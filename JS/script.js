@@ -45,6 +45,15 @@ const songs = [
   },
 ];
 
+const loadSong = (songs) => {
+  title.textContent = songs.title;
+  artist.textContent = songs.artist;
+  music.src = "Music/" + songs.name + ".mp3";
+  img.src = "Images/" + songs.img + ".jpg";
+};
+
+window.onload(loadSong(songs[0]));
+
 let isPlaying = false;
 const playMusic = () => {
   isPlaying = true;
@@ -65,13 +74,6 @@ play.addEventListener("click", () => {
 });
 
 // Changing music data
-
-const loadSong = (songs) => {
-  title.textContent = songs.title;
-  artist.textContent = songs.artist;
-  music.src = "Music/" + songs.name + ".mp3";
-  img.src = "Images/" + songs.img + ".jpg";
-};
 
 let songIndex = 0;
 const nextSong = () => {
