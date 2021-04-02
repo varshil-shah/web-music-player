@@ -51,6 +51,7 @@ const playMusic = () => {
   music.play();
   play.classList.replace("fa-play", "fa-pause");
   img.classList.add("anime");
+  play.title = "pause";
 };
 
 const pauseMusic = () => {
@@ -58,6 +59,7 @@ const pauseMusic = () => {
   music.pause();
   play.classList.replace("fa-pause", "fa-play");
   img.classList.remove("anime");
+  play.title = "play";
 };
 
 play.addEventListener("click", () => {
