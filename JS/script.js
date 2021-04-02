@@ -5,6 +5,10 @@ const title = document.getElementById("title");
 const artist = document.getElementById("artist");
 const next = document.getElementById("next");
 const prev = document.getElementById("prev");
+let progress = document.getElementById("progress");
+let currentTimeUpdate = document.getElementById("current_time");
+let durationTime = document.getElementById("duration");
+const progress_div = document.getElementById("progress_div");
 
 const songs = [
   {
@@ -93,6 +97,44 @@ const prevSong = () => {
   loadSong(songs[songIndex]);
   playMusic();
 };
+
+// Progress JS
+
+// search - time update audio event
+music.addEventListener("timeupdate", (event) => {
+  const { currentTime, duration } = event.srcElement;
+  // Percentage
+  let progressTime = (currentTime / duration) * 100;
+  progress.style.width = `${progressTime}%`;
+
+  // current time update:
+  let minuteCurrentTime = Math.floor(currentTime / 60);
+  let secondCurrentTime = Math.floor(currentTime % 60);
+  if (secondCurrentTime < 10) {
+    secondCurrentTime = `0${secondCurrentTime}`;
+  }
+  currentTimeUpdate.textContent = `${minuteCurrentTime}:${secondCurrentTime}`;
+
+  // music duration update
+  let minuteDuration = Math.floor(duration / 60);
+  let secondDuration = Math.floor(duration % 60);
+  if (secondDuration < 10) {
+    secondDuration = `0${secondDuration}`;
+  }
+  if (duration) {
+    durationTime.textContent = `${minuteDuration}:${secondDuration}`;
+  }
+});
+
+// progress on click functionality
+progress_div.addEventListener("click", (event) => {
+  const { duration } = music;
+  let move_progress = (event.offsetX / event.srcElement.clientWidth) * duration;
+  music.currentTime = move_progress;
+});
+
+// If the music get completed it will automatically play the next one.
+music.addEventListener("ended", nextSong);
 
 next.addEventListener("click", nextSong);
 prev.addEventListener("click", prevSong);
