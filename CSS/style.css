@@ -72,12 +72,15 @@ img {
   margin: auto;
   margin-top: 0.8rem;
 }
+
 .music_controls .fa {
   color: #111111;
   font-size: 2rem;
   cursor: pointer;
+  align-content: center;
   filter: drop-shadow(0 1.2rem 3rem 0.5rem rgba(0, 0, 0, 0.2));
 }
+
 .music_controls .main_button {
   width: 5rem;
   height: 5rem;
@@ -156,6 +159,14 @@ img {
   display: flex;
   justify-content: space-between;
   font-size: 1.2rem;
+}
+
+#loop.active {
+  color: rgb(241, 25, 10);
+}
+
+#mute.active {
+  color: rgb(241, 25, 10);
 }
 
 @media (max-width: 386px) {

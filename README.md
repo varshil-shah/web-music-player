@@ -1,7 +1,6 @@
 # 🎶 Music Player Using JavaScript
 
 ## Images:
-![Image](Images/music-player-v1.png "Version-1")
 ![Image](Images/music-player-v2.png "Version-2")
 
 ## 🔗 Try now:

@@ -9,6 +9,8 @@ let progress = document.getElementById("progress");
 let currentTimeUpdate = document.getElementById("current_time");
 let durationTime = document.getElementById("duration");
 const progress_div = document.getElementById("progress_div");
+const loop = document.getElementById("loop");
+const mute = document.getElementById("mute");
 
 const songs = [
   {
@@ -28,6 +30,12 @@ const songs = [
     title: "Some-Sunshine",
     artist: "Sharman-Joshi",
     img: "image-3",
+  },
+  {
+    name: "Perfect",
+    title: "Perfect",
+    artist: "Ed Sheeran",
+    img: "image-1",
   },
   {
     name: "humsafar",
@@ -81,7 +89,6 @@ const loadSong = (songs) => {
 
 let songIndex = 0;
 const nextSong = () => {
-  // formula
   songIndex = (songIndex + 1) % songs.length;
   loadSong(songs[songIndex]);
   playMusic();
@@ -90,12 +97,36 @@ const nextSong = () => {
 onloadFun = () => loadSong(songs[0]);
 
 const prevSong = () => {
-  // formula
   songIndex = (songIndex - 1 + songs.length) % songs.length;
-  // 1 = (1-1+6) % 6 = 0
-  // 2 = (2-1+6) = 7%6 = 1
   loadSong(songs[songIndex]);
   playMusic();
+};
+
+// Looping a music
+
+const replaySong = () => {
+  loop.classList.toggle("active");
+  if (loop.classList.contains("active")) {
+    music.loop = true;
+    loop.title = "Unloop";
+  } else {
+    music.loop = false;
+    loop.title = "Loop";
+    music.addEventListener("ended", nextSong);
+  }
+};
+
+// mute the audio
+
+const muteAudio = () => {
+  mute.classList.toggle("active");
+  if (mute.classList.contains("active")) {
+    music.muted = true;
+    mute.title = "Unmute";
+  } else {
+    music.muted = false;
+    mute.title = "mute";
+  }
 };
 
 // Progress JS
@@ -133,8 +164,9 @@ progress_div.addEventListener("click", (event) => {
   music.currentTime = move_progress;
 });
 
-// If the music get completed it will automatically play the next one.
 music.addEventListener("ended", nextSong);
+
+// If the music get completed it will automatically play the next one.
 
 next.addEventListener("click", nextSong);
 prev.addEventListener("click", prevSong);
