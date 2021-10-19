@@ -20,7 +20,7 @@ You can use this music player to add your favourite music and play it without an
 If you want to add new music, follow the below provided steps:
 1. Add music,image in the following folders respectively.
 2. In script.js file, in songs section, create their objects will the given properties name(song name),title,artist,img(image name).
-3. You shouldn't add song and image extension in array of object variable, and the image must be of type jpg.
+3. You are suppose to add song and image extension in array of object variable, and the image must be of type jpg.
 ```javascript
 const songs = [
     {
